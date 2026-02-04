@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>todoReg 글쓰기 임시 화면입니다.</h1>
- <form action="/todo/register" method="post">
+<a href="/todo/list_0204">목록가기</a>
+ <form action="/todo/register_0204" method="post">
      <div>
          <input type="text" name="title" placeholder="todo 제목을 입력해주세요">
      </div>
