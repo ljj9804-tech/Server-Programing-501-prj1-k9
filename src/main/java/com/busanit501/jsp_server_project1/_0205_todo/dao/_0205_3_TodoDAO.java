@@ -76,7 +76,7 @@ public class _0205_3_TodoDAO {
     // 목록 기능 구현하기.
     public List<_0205_4_TodoVO> selectAll() throws Exception {
         // sql 문장 작성,
-        String sql = "select * from tbl_todo";
+        String sql = "select * from tbl_todo order by tno desc";
 
         // 디비 서버에 연결하는 도구 설정.(반복)
         @Cleanup Connection connection = _0205_9_ConnectionUtil.INSTANCE.getConnection();
