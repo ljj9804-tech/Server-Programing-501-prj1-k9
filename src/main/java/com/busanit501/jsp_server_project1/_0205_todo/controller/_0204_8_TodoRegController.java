@@ -1,7 +1,7 @@
 package com.busanit501.jsp_server_project1._0205_todo.controller;
 
-import com.busanit501.jsp_server_project1._0205_todo.dto._0204_1_TodoDTO;
-import com.busanit501.jsp_server_project1._0205_todo.service._0204_4_TodoService;
+import com.busanit501.jsp_server_project1._0205_todo.dto._0205_2_TodoDTO;
+import com.busanit501.jsp_server_project1._0205_todo.service._0205_1_TodoService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class _0204_8_TodoRegController extends HttpServlet {
     // 정답 : 2) 이용.
 
     // 서비스의 기능을 가지고 있는 클래스 이용 : _0204_4_TodoService
-    private _0204_4_TodoService todoService = _0204_4_TodoService.INSTANCE;
+    private _0205_1_TodoService todoService = _0205_1_TodoService.INSTANCE;
     // 시간의 포맷 형태를 변경하는 기능을 추가. HH : 24시간제 표기 , a(오전/오후) hh : 1 ~12시 나타냄.
 //    private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 //    private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm:ss");
@@ -53,7 +53,7 @@ public class _0204_8_TodoRegController extends HttpServlet {
         log.info("PRG 패턴으로 글쓰기 post 작업 후, 리다이렉트 목록 화면으로 이동하기.");
 
         // 화면으로부터 전달받은 데이터를, -> DTO 객체 담아서, -> 서비스에 전달.
-        _0204_1_TodoDTO todoDTO = _0204_1_TodoDTO.builder()
+        _0205_2_TodoDTO todoDTO = _0205_2_TodoDTO.builder()
                 .title(req.getParameter("title"))
 //                .dueDate(req.getParameter("dueDate"))
                 .dueDate(LocalDate.parse(req.getParameter("dueDate"),DATEFORMATTER))

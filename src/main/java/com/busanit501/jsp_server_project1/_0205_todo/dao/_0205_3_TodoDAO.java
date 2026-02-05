@@ -1,6 +1,6 @@
 package com.busanit501.jsp_server_project1._0205_todo.dao;
 
-import com.busanit501.jsp_server_project1._0205_todo.domain._0204_2_TodoVO;
+import com.busanit501.jsp_server_project1._0205_todo.domain._0205_4_TodoVO;
 import lombok.Cleanup;
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class _0204_5_TodoDAO {
+public class _0205_3_TodoDAO {
     // 여기 클래스, 데이터베이스에 연결하는 기능을 모아둔 클래스.
 
     // 디비 서버에 연결해서,
@@ -57,7 +57,7 @@ public class _0204_5_TodoDAO {
     //등록하기.
     // _0203_1_TodoVO vo 여기 객체에는 , 화면에서, 입력한 내용을 담고 있음.
     // 화면상에는 제목만 입력 할 예정(수동), tno 번호(자동), 완료여부(수동), 날짜(수동)
-    public void insert(_0204_2_TodoVO vo) throws Exception {
+    public void insert(_0205_4_TodoVO vo) throws Exception {
         // sql 문장 작성,
         String sql = "insert into tbl_todo (title, dueDate, finished) values (?, ? ,?)";
         // 디비 서버에 연결하는 도구 설정.
@@ -74,7 +74,7 @@ public class _0204_5_TodoDAO {
     }
 
     // 목록 기능 구현하기.
-    public List<_0204_2_TodoVO> selectAll() throws Exception {
+    public List<_0205_4_TodoVO> selectAll() throws Exception {
         // sql 문장 작성,
         String sql = "select * from tbl_todo";
 
@@ -89,7 +89,7 @@ public class _0204_5_TodoDAO {
 
         // 데이터베이스로 받아온 내용을, 리스트로 변환 하는 작업.
         // 임시로 담아둘 리스트를 선언
-        List<_0204_2_TodoVO> list = new ArrayList<>();
+        List<_0205_4_TodoVO> list = new ArrayList<>();
 
         // 반복문을 이용해서, 데이터베이스 내용 -> 리스트의 요소의 객체에 각각 담기 놀이.
         // resultSet, 테이블, 준비는 0행부터 준비를하고, next() 실행하면, 데이터가 있으면 다음행으로 갑니다.
@@ -102,7 +102,7 @@ public class _0204_5_TodoDAO {
 
         while (resultSet.next()) {
             // 객체에 담기 위해서, 임시 객체를 생성, builder 패턴이용함.
-            _0204_2_TodoVO vo = _0204_2_TodoVO.builder()
+            _0205_4_TodoVO vo = _0205_4_TodoVO.builder()
                     .tno(resultSet.getLong("tno"))
                     .title(resultSet.getString("title"))
                     // 타입을 일치 시켜주기,
@@ -119,7 +119,7 @@ public class _0204_5_TodoDAO {
 
     // 한개만 조회, 특징, 조회할 tno 번호를 알고 있다고 가정.
     // 조회할 todo 를 클릭을 하면, 클릭한 todo tno 번호를 화면으로 부터 전달을 받음.
-    public _0204_2_TodoVO selectOne(Long tno) throws Exception {
+    public _0205_4_TodoVO selectOne(Long tno) throws Exception {
         // sql 문장 작성,
         String sql = "select * from tbl_todo where tno = ?";
 
@@ -148,7 +148,7 @@ public class _0204_5_TodoDAO {
 
         resultSet.next();
             // 객체에 담기 위해서, 임시 객체를 생성, builder 패턴이용함.
-            _0204_2_TodoVO vo = _0204_2_TodoVO.builder()
+            _0205_4_TodoVO vo = _0205_4_TodoVO.builder()
                     .tno(resultSet.getLong("tno"))
                     .title(resultSet.getString("title"))
                     // 타입을 일치 시켜주기,
@@ -165,7 +165,7 @@ public class _0204_5_TodoDAO {
     // 수정할 내용을 담을 데이터가 받아 왔다고 가정하고, 진행.
     // 나중에, 화면에서 수정할 내용을 받아오게 됩니다. 받아오면, 그 데이터를 여기 : _0203_1_TodoVO todoVO 담기.
     // 여기서, _0203_1_TodoVO todoVO에서 변경할 내용을 꺼내서, -> 데이터베이스에 수정합니다.
-    public void updateOne(_0204_2_TodoVO todoVO) throws Exception {
+    public void updateOne(_0205_4_TodoVO todoVO) throws Exception {
 
         // 글쓰기 작업과 거의 동일하므로, 위의 기능을 복붙해서, 수정하기.
         // sql 구문이 다름.

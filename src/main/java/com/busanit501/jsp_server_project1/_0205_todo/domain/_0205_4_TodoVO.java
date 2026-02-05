@@ -11,7 +11,7 @@ import java.time.LocalDate;
 // 생성자를 추가.
 @NoArgsConstructor // 기본 생성자를 생성함.
 @AllArgsConstructor // 모든 멤버를 매개변수로 가지는 생성자를 생성함.
-public class _0204_2_TodoVO {
+public class _0205_4_TodoVO {
     private Long tno;
     private String title;
     private LocalDate dueDate;
