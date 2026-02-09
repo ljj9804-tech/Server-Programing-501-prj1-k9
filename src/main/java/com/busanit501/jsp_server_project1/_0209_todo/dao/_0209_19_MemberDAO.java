@@ -54,4 +54,29 @@ public class _0209_19_MemberDAO {
         // sql를 전달하기.
         preparedStatement.executeUpdate();
     }
+
+    // uuid 를 통해서, 유저를 조회하는 기능 구현.
+    public _0209_17_MemberVO selectUUID(String uuid) throws Exception {
+        // sql 문장 정의
+        String sql = "select mid,mpw,mname,uuid from tbl_member where uuid = ?";
+        // DB 서버 연결 객체,
+        @Cleanup Connection connection = _0209_7_ConnectionUtil.INSTANCE.getConnection();
+        // sql 문장 담을 객체
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        // sql 업데이트할 데이터 넣기 작업
+        preparedStatement.setString(1, uuid);
+        // sql를 전달하기.
+        @Cleanup ResultSet resultSet =  preparedStatement.executeQuery();
+
+        //DB로 부터 유저 정보를 받아오고, 디비 -> _0209_17_MemberVO 변경.
+        resultSet.next();
+
+        _0209_17_MemberVO memberVO = _0209_17_MemberVO.builder()
+                .mid(resultSet.getString(1))
+                .mpw(resultSet.getString(2))
+                .mname(resultSet.getString(3))
+                .uuid(resultSet.getString(4))
+                .build();
+        return memberVO;
+    }
 }
