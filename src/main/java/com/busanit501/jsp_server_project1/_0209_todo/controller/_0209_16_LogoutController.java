@@ -4,10 +4,7 @@ import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @Log4j2
@@ -27,10 +24,39 @@ public class _0209_16_LogoutController extends HttpServlet {
         session.invalidate();
 
         // 정상 로그아웃한다면, 쿠키의 remember-me 삭제도 같이 해야, 정상 로그아웃.
+        // 2. remember-me 쿠키 삭제 로직 추가
+        // 기존에 만든 findCookie 메서드를 활용하거나 직접 생성하여 전송합니다.
+        Cookie rememberCookie = findCookie(req.getCookies(), "remember-me");
 
+        // 쿠키의 수명을 0으로 설정 (삭제 효과)
+        rememberCookie.setMaxAge(0);
+        rememberCookie.setPath("/");
+
+        // 응답 헤더에 추가하여 브라우저의 쿠키를 갱신(삭제)
+        resp.addCookie(rememberCookie);
 
         // 리다이렉트
         resp.sendRedirect("/login_0209");
 
+    }
+
+    private Cookie findCookie(Cookie[] cookies, String cookieName) {
+        Cookie targetCookie = null;
+
+        if(cookies != null && cookies.length > 0) {
+            for(Cookie ck: cookies) {
+                if(ck.getName().equals(cookieName)) {
+                    targetCookie = ck;
+                    break;
+                }
+            }
+        }
+
+        // 찾고자 하는 쿠키가 없는 경우에도 삭제 처리를 위해 빈 값을 가진 쿠키 생성
+        if(targetCookie == null) {
+            targetCookie = new Cookie(cookieName, "");
+            targetCookie.setPath("/");
+        }
+        return targetCookie;
     }
 }
