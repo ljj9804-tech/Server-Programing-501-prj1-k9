@@ -25,4 +25,13 @@ public class _0209_22_MemberServiceTests {
         log.info("멤버 서비스 로그인 테스트 memberDTO: " + memberDTO);
 
     }
+
+    @Test
+    public void testLogin2() throws Exception {
+        String uuid = "4fa99bb3-7b9b-4510-a1d4-84aae955bb82";
+
+        _0209_18_MemberDTO memberDTO = memberService.getByUUID(uuid);
+        log.info("uuid 를 이용한 조회 멤버 서비스 로그인 테스트2 memberDTO: " + memberDTO);
+
+    }
 }

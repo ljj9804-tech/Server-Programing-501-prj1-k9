@@ -31,4 +31,11 @@ public enum  _0209_21_MemberService {
     public void updateUuid(String mid, String uuid) throws Exception {
         dao.updateUuid(mid,uuid);
     }
+
+    // 자동로그인 기능 추가 0209, 순서6
+    public _0209_18_MemberDTO getByUUID(String uuid) throws Exception {
+        _0209_17_MemberVO memberVO = dao.selectUUID(uuid);
+        _0209_18_MemberDTO memberDTO = modelMapper.map(memberVO,_0209_18_MemberDTO.class);
+        return memberDTO;
+    }
 }
