@@ -1,5 +1,7 @@
 package com.busanit501.jsp_server_project1._0209_todo.controller;
 
+import com.busanit501.jsp_server_project1._0209_todo.dto._0209_18_MemberDTO;
+import com.busanit501.jsp_server_project1._0209_todo.service._0209_21_MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,9 @@ import java.io.IOException;
 @Log4j2
 @WebServlet(name="_0209_13_LoginController", urlPatterns = "/login_0209")
 public class _0209_13_LoginController extends HttpServlet {
+    // 앞에 만들었던, 멤버서비스의 기능을 의존하고, 부탁하고, 용역주기.
+    _0209_21_MemberService memberService = _0209_21_MemberService.INSTANCE;
+
     // 로그인 화면 필요.
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -30,23 +35,18 @@ public class _0209_13_LoginController extends HttpServlet {
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
 
-        // 임시로 : 아이디+패스워드 두 문자열을 합쳐서, loginInfo  저장.
-        String mid_mpw = mid + mpw;
+        // 데이터베이스 로직처리로 변경, 이전 코드는 0206를 참고하기.
+        try {
+            // 화면에 입력한 mid,mpw 내용이 데이터베이스 있다면, 정상 로그인 처리.
+            // 없다면 예외를 발생시켜셔 로그인 페이지로 보내고, 보내는데,
+            // 쿼리 스트링으로 result=error 같이 전달.
+            _0209_18_MemberDTO memberDTO = memberService.login(mid, mpw);
+            HttpSession session = req.getSession();
+            session.setAttribute("loginInfo", memberDTO);
+            resp.sendRedirect("/todo/list_0209");
 
-        // 세션 객체를 이용해서, 서버의 세션이라는 저장공간에 키 : loginInfo 저장.
-        // 값 : 방금 아이디와 패스워드를 합친 문자열을 저장.
-        HttpSession session = req.getSession();
-
-        // 세션을 이용해서, 저장하기.
-        session.setAttribute("loginInfo",mid_mpw );
-
-        // 세션을 이용해서, 불로오기
-        Object loginInfo = session.getAttribute("loginInfo");
-        String loginInfoStr = (String) loginInfo;
-
-        // 저장 후, 바로 불러오기 출력 확인.
-        log.info("세션에 저장된 loginInfo 불러와 확인 loginInfoStr :  " + loginInfoStr);
-
-        resp.sendRedirect("/todo/list_0209");
-    }
+        } catch (Exception e) {
+            resp.sendRedirect("/login?result=error");
+        }
+    } //doPost
 }
