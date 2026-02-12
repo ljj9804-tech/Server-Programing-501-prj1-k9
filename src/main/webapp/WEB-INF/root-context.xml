@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    빈 주입 (객체 등록과정)
+    <!--    빈 주입 (객체 등록과정)
 -> 시스템에 객체를 넣어두기.(서버 시작시, 해당 객체를 켜준다, 사용할수 있게)-->
-    <bean class="com.busanit501.jsp_server_project1.springex_0212.sample._1_SampleDAO_0212"></bean>
-    <bean class="com.busanit501.jsp_server_project1.springex_0212.sample._2_SampleService_0212"></bean>
+    <!--    <bean class="com.busanit501.jsp_server_project1.springex_0212.sample._1_SampleDAO_0212"></bean>-->
+    <!--    <bean class="com.busanit501.jsp_server_project1.springex_0212.sample._2_SampleService_0212"></bean>-->
 
+    <context:component-scan base-package="com.busanit501.jsp_server_project1.springex_0212.sample"/>
 </beans>
