@@ -11,6 +11,6 @@
     <title>hello</title>
 </head>
 <body>
- <h1>hello~~spring mvc </h1>
+ <h1>hello~~spring mvc 안녕하세요~~(한글깨짐은 조금있다 해결하기.) </h1>
 </body>
 </html>
