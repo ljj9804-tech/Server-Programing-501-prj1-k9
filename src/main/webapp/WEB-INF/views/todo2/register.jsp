@@ -12,5 +12,24 @@
 </head>
 <body>
 <h1>임시 register 화면</h1>
+<form action="/todo2/register" method="post">
+    <div>
+        Title: <input type="text" name="title" placeholder="todo 제목을 입력해주세요">
+    </div>
+    <div>
+        DueDate: <input type="date" name="dueDate">
+    </div>
+    <div>
+        Writer: <input type="text" name="writer">
+    </div>
+    <div>
+        Finished: <input type="checkbox" name="finished">
+    </div>
+    <div>
+        <button type="reset">초기화</button>
+        <button type="submit">등록하기</button>
+    </div>
+</form>
+
 </body>
 </html>

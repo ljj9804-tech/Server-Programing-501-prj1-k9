@@ -1,5 +1,6 @@
 package com.busanit501.jsp_server_project1.springex_0213_keep.controller;
 
+import com.busanit501.jsp_server_project1.springex_0213_keep.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,8 @@ public class TodoController {
     }
 
     @PostMapping("/register")
-    public void postRegister() {
+    public void postRegister(TodoDTO todoDTO) {
         log.info("todo register..post");
+        log.info("todoDTO : " + todoDTO);
     }
 }
