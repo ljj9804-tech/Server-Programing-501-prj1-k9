@@ -15,7 +15,7 @@ public class TodoController {
 
     // http://localhost:8080/todo2/list
     // 뷰 리졸버가 연결되어서,
-    // todo/list -> WEN-INF/views/todo2/list.jsp 연결 설정됨.
+    // todo2/list -> WEN-INF/views/todo2/list.jsp 연결 설정됨.
     @RequestMapping("/list")
     public void list() {
         log.info("todo list...");
@@ -23,6 +23,8 @@ public class TodoController {
 
 //    @RequestMapping(value = "/register", method = RequestMethod.GET)
     @GetMapping("/register")
+    // 뷰 리졸버가 연결되어서,
+    // todo2/list -> WEN-INF/views/todo2/register.jsp 연결 설정됨.
     public void getRegister() {
         log.info("todo register..get");
     }
