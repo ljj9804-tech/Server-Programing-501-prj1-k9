@@ -5,8 +5,10 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// 설정을 담당하는 클래스라고, 스프링(시스템에게) 알려주기.
 @Configuration
 public class ModelMapperConfig {
+    // 일반 클래스 객체를  스프링(시스템에게) 알려주기.
     @Bean
     public ModelMapper getMapper() {
         ModelMapper modelMapper = new ModelMapper();
