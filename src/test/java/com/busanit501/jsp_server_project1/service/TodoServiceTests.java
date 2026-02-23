@@ -43,4 +43,11 @@ public class TodoServiceTests {
         dtoList.forEach(dto ->log.info(dto));
     }
 
+    @Test
+    public void testGetOne() {
+        // 각자 데이터베이스에 있는 tno 번호 확인 후 , 테스트 진행하기.
+        TodoDTO todoDTO = todoService.getOne(32L);
+        log.info(todoDTO);
+    }
+
 }
