@@ -32,7 +32,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/todo2/register">글쓰기</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Features</a>
@@ -88,8 +88,14 @@
                                 <button class="btn btn-secondary" type="button">목록가기</button>
                             </div>
                         <script>
+                            //목록가기
                             document.querySelector(".btn-secondary").addEventListener("click", function (e) {
                                 self.location = "/todo2/list"
+                                },false
+                            )
+                            //수정폼 가기.
+                            document.querySelector(".btn-primary").addEventListener("click", function (e) {
+                                    self.location = "/todo2/modify?tno=" + ${dto.tno}
                                 },false
                             )
                         </script>
