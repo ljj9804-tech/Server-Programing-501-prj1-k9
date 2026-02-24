@@ -59,4 +59,13 @@ public class TodoServiceImpl implements TodoService{
     public void remove(Long tno) {
         todoMapper.delete(tno);
     }
+
+    @Override
+    public void modify(TodoDTO todoDTO) {
+        // 화면에서 전달받은 데이터는 어디에 담죠? TodoDTO
+        // 서비스에서 -> 데이터 수정할 때는 어디에 담죠 ? TodoVO
+        // 여기서, 변환하기.
+       TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+       todoMapper.update(todoVO);
+    }
 }

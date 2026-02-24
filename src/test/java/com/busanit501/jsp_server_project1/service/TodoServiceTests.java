@@ -55,4 +55,17 @@ public class TodoServiceTests {
         // 각자 데이터베이스에 있는 tno 번호 확인 후 , 테스트 진행하기.
         todoService.remove(37L);
     }
+
+    @Test
+    public void testUpdate() {
+        // 준비물, 화면에서 넘겨받은 TodoVO 있다고 가정, 또는 더미 데이터 준비.
+        // 수정, 기존에 DB 내용으로 선택? (각자다름)
+        TodoDTO todoDTO = TodoDTO.builder()
+                .tno(34L)
+                .title("오늘 점심 뭐 먹죠2 수정 서비스 테스트-0224?")
+                .finished(true)
+                .dueDate(LocalDate.now())
+                .build();
+        todoService.modify(todoDTO);
+    }
 }
