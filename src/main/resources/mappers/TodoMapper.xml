@@ -8,32 +8,57 @@
     <select id="getTime" resultType="string">
         select now()
     </select>
-<!--    여러 개의 sql 문장을 여기에 등록할 예정-->
-<!--    insert 추가 작업 -->
-<!--    TodoMapper 인터페이스 안에 있는 메서드이름과 동일-->
+    <!--    여러 개의 sql 문장을 여기에 등록할 예정-->
+    <!--    insert 추가 작업 -->
+    <!--    TodoMapper 인터페이스 안에 있는 메서드이름과 동일-->
     <insert id="insert">
-        insert into tbl_todo (title, dueDate, writer, finished) values ( #{title}, #{dueDate}, #{writer}, #{finished})
+        insert into tbl_todo (title, dueDate, writer, finished)
+        values (#{title}, #{dueDate}, #{writer}, #{finished})
     </insert>
 
     <select id="selectAll" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
-        select * from tbl_todo order by tno desc
+        select *
+        from tbl_todo
+        order by tno desc
     </select>
 
     <select id="selectOne" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
-        select * from tbl_todo where tno = #{tno}
+        select *
+        from tbl_todo
+        where tno = #{tno}
     </select>
 
     <delete id="delete">
-        delete from tbl_todo where tno = #{tno}
+        delete
+        from tbl_todo
+        where tno = #{tno}
     </delete>
 
     <update id="update">
-        update tbl_todo set title = #{title}, dueDate = #{dueDate}, finished = #{finished} where tno = #{tno}
+        update tbl_todo
+        set title    = #{title},
+            dueDate  = #{dueDate},
+            finished = #{finished}
+        where tno = #{tno}
     </update>
 
-<!--    필터의 완료여부와, 기한 조건을 넣을 경우 확인1-->
+    <!--    필터의 완료여부와, 기한 조건을 넣을 경우 확인1-->
     <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
-        select * from tbl_todo
+        select *
+        from tbl_todo
+-- 기존의  where 태그가 있던 자리를 , 따로 sql 문장으로 분리해서, 가져와서 사용하기.
+        <include refid="search"></include>
+        order by tno desc limit #{skip}, #{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(tno)
+        from tbl_todo
+        <include refid="search"></include>
+    </select>
+
+    <!--    재사용으로 이용되는 검색 sql -->
+    <sql id="search">
         <where>
             <if test="types != null and types.length > 0">
                 <foreach collection="types" item="type" open="(" close=")" separator=" OR ">
@@ -46,23 +71,18 @@
                 </foreach>
             </if>
 
-                 <if test="finished">
-                     <trim prefix="and">
-                         finished
-                     </trim>
-                 </if>
+            <if test="finished">
+                <trim prefix="and">
+                    finished
+                </trim>
+            </if>
 
             <if test="from != null and to != null">
                 <trim prefix="and">
                     dueDate between #{from} and #{to}
                 </trim>
             </if>
-            order by tno desc limit #{skip}, #{size}
         </where>
-    </select>
-
-    <select id="getCount" resultType="int">
-        select count(tno) from tbl_todo
-    </select>
+    </sql>
 
 </mapper>
