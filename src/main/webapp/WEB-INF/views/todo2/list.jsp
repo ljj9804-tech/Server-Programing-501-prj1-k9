@@ -68,7 +68,7 @@
                             </thead>
                             <tbody>
                             <%--<c:forEach items="${dtoList}" var="dto">--%>
-<%--                            responseDTO.dtoList 호출하는 것은 responseDTO의 getter 를 호출하는 효과와 동일--%>
+                            <%--                            responseDTO.dtoList 호출하는 것은 responseDTO의 getter 를 호출하는 효과와 동일--%>
                             <c:forEach items="${responseDTO.dtoList}" var="dto">
                                 <tr>
                                     <th><c:out value="${dto.tno}"/></th>
@@ -84,17 +84,18 @@
                             </c:forEach>
                             </tbody>
                         </table>
-<%--                        <div class="float-end">--%>
+                        <%--                        <div class="float-end">--%>
                         <div class="d-flex justify-content-center">
                             <ul class="pagination flex-wrap">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <c:if test="${responseDTO.prev}">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                </c:if>
                                 <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var="num">
                                     <li class="page-item"><a class="page-link" href="#">${num}</a></li>
                                 </c:forEach>
-<%--                                <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-<%--                                <li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-<%--                                <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <c:if test="${responseDTO.next}">
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </c:if>
                             </ul>
                         </div>
                     </div>
