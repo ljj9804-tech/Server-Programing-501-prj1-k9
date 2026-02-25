@@ -97,7 +97,7 @@
                         <script>
                             //목록가기
                             document.querySelector(".btn-secondary").addEventListener("click", function (e) {
-                                    self.location = "/todo2/list"
+                                    self.location = `/todo2/list?${pageRequestDTO.link}`
                                 }, false
                             )
                             //삭제하기. -> form 태그 내부에 액션의 주소 : /todo2/modify
