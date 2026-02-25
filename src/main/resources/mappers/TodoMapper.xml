@@ -42,17 +42,17 @@
         where tno = #{tno}
     </update>
     <!--    기본 전체 조회1 화면 확인용-->
-        <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
-            select * from tbl_todo order by tno desc limit #{skip}, #{size}
-        </select>
+<!--        <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
+<!--            select * from tbl_todo order by tno desc limit #{skip}, #{size}-->
+<!--        </select>-->
     <!--    필터의 완료여부와, 기한 조건을 넣을 경우 확인1-->
-<!--    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
-<!--        select *-->
-<!--        from tbl_todo-->
-<!--&#45;&#45; 기존의  where 태그가 있던 자리를 , 따로 sql 문장으로 분리해서, 가져와서 사용하기.-->
-<!--        <include refid="search"></include>-->
-<!--        order by tno desc limit #{skip}, #{size}-->
-<!--    </select>-->
+<!--    기존의  where 태그가 있던 자리를 , 따로 sql 문장으로 분리해서, 가져와서 사용하기.-->
+    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
+        select *
+        from tbl_todo
+        <include refid="search"></include>
+        order by tno desc limit #{skip}, #{size}
+    </select>
 
     <select id="getCount" resultType="int">
         select count(tno)
