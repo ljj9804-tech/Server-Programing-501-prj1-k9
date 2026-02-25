@@ -31,6 +31,53 @@
         update tbl_todo set title = #{title}, dueDate = #{dueDate}, finished = #{finished} where tno = #{tno}
     </update>
 
+<!--    기본 전체 조회1-->
+<!--    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
+<!--        select * from tbl_todo order by tno desc limit #{skip}, #{size}-->
+<!--    </select>-->
+
+<!--    검색, 필터 , 타입 조건 1-->
+<!--    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
+<!--        select * from tbl_todo-->
+<!--        <foreach collection="types" item="type">-->
+<!--            #{type}-->
+<!--        </foreach>-->
+<!--        order by tno desc limit #{skip}, #{size}-->
+<!--    </select>-->
+
+    <!--    검색, 필터 , 타입 조건 2, 조건문 추가 -->
+<!--    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
+<!--        select * from tbl_todo-->
+<!--        <foreach collection="types" item="type">-->
+<!--            <if test="type == 't'.toString()">-->
+<!--                title like concat('%',#{keyword},'%')-->
+<!--            </if>-->
+<!--            <if test="type == 'w'.toString()">-->
+<!--                writer like concat('%',#{keyword},'%')-->
+<!--            </if>-->
+<!--        </foreach>-->
+<!--        order by tno desc limit #{skip}, #{size}-->
+<!--    </select>-->
+
+    <!--    검색, 필터 , 타입 조건 3, or 추가 -->
+<!--    <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">-->
+<!--        select * from tbl_todo-->
+<!--        <foreach collection="types" item="type" open="(" close=")" separator=" OR " >-->
+<!--            <if test="type == 't'.toString()">-->
+<!--                title like concat('%',#{keyword},'%')-->
+<!--            </if>-->
+<!--            <if test="type == 'w'.toString()">-->
+<!--                writer like concat('%',#{keyword},'%')-->
+<!--            </if>-->
+<!--        </foreach>-->
+<!--        order by tno desc limit #{skip}, #{size}-->
+<!--    </select>-->
+
+<!--    <select id="getCount" resultType="int">-->
+<!--        select count(tno) from tbl_todo-->
+<!--    </select>-->
+
+    <!--    검색, 필터 , 타입 조건 4, where 추가 -->
     <select id="selectList" resultType="com.busanit501.jsp_server_project1.springex_new_0219_keep.domain.TodoVO">
         select * from tbl_todo
         <where>

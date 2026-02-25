@@ -107,7 +107,7 @@ public class TodoMapperTests {
                 .page(1)
                 .size(10)
                 .types(new String[]{"t","w"})
-                .keyword("AAA")
+                .keyword("테스트")
                 .build();
 
         List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
